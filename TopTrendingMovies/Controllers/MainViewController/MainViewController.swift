@@ -24,6 +24,9 @@ class MainViewController: UIViewController {
         configView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.getData()
+    }
     private func setTableView() {
         tableView = build.tableView
         view.addSubview(tableView)
