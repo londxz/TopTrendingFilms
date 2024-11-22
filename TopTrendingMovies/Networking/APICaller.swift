@@ -39,6 +39,7 @@ class APICaller {
                 completionHandler(.failure(.urlError))
                 return
             }
+
             
             var request = URLRequest(url: finalURL)
             request.httpMethod = "GET"
@@ -51,14 +52,18 @@ class APICaller {
             
             URLSession.shared.dataTask(with: request) { dataResponse, URLResponse, error in
                 if let error = error {
+                    print("Network error: \(error.localizedDescription)")
                     completionHandler(.failure(.networkError))
                     return
                 }
+
+                
                 
                 guard let data = dataResponse else {
                     completionHandler(.failure(.dataError))
                     return
                 }
+
                 
                 do {
                     let resultData = try JSONDecoder().decode(TrendingMoviesModel.self, from: data)

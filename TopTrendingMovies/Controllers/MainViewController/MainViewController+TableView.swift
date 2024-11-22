@@ -10,7 +10,7 @@ import UIKit
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func setupTableView() {
+    func configTableView() {
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -21,6 +21,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func registerCells() {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,7 +41,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         var cellContext = cell.defaultContentConfiguration()
-        cellContext.text = "\(indexPath.row)"
+        let movieData = cellDataSource[indexPath.row]
+        cellContext.text = self.viewModel.getMovieName(movieData)
         cell.contentConfiguration = cellContext
         
         return cell

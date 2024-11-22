@@ -17,14 +17,17 @@ class MainViewController: UIViewController {
     
     // vars lets
     var tableView = UITableView()
+    var indicator: UIActivityIndicatorView!
+    var cellDataSource: [Movie] = []
     
     override func viewDidLoad() {
     
-        setTableView()
         configView()
+        bindViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         viewModel.getData()
     }
     private func setTableView() {
@@ -39,9 +42,44 @@ class MainViewController: UIViewController {
         ])
     }
     
+    private func setupActivityIndicator() {
+        indicator = build.activityIndicatorView
+        view.addSubview(indicator)
+        
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+
+        ])
+    }
+    
     private func configView() {
         view.backgroundColor = .white
         self.title = "Fist screen"
-        setupTableView()
+        setTableView()
+        configTableView()
+        setupActivityIndicator()
+    }
+    
+    private func bindViewModel() {
+        viewModel.isLoading.bind { [weak self] isLoading in
+            guard let self = self, let isLoading = isLoading else {
+                return
+            }
+            DispatchQueue.main.async {
+                if isLoading {
+                    self.indicator.startAnimating()
+                } else {
+                    self.indicator.stopAnimating()
+                }
+            }
+        }
+        viewModel.cellDataSource.bind { [weak self] movies in
+            guard let self = self, let movies = movies else {
+                return
+            }
+            self.cellDataSource = movies
+            self.reloadTableView()
+        }
     }
 }

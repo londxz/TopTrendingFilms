@@ -1,10 +1,3 @@
-//
-//  TrendingMoviesModel.swift
-//  TopTrendingMovies
-//
-//  Created by Родион Холодов on 04.11.2024.
-//
-
 import Foundation
 
 // MARK: - Welcome
@@ -26,8 +19,7 @@ struct Movie: Codable {
     let backdropPath: String
     let genreIDS: [Int]
     let id: Int
-    let originalLanguage: OriginalLanguage
-    let originalTitle, overview: String
+    let originalLanguage, originalTitle, overview: String
     let popularity: Double
     let posterPath, releaseDate, title: String
     let video: Bool
@@ -50,9 +42,3 @@ struct Movie: Codable {
     }
 }
 
-enum OriginalLanguage: String, Codable {
-    case en = "en"
-    case es = "es"
-    case fr = "fr"
-    case tl = "tl"
-}

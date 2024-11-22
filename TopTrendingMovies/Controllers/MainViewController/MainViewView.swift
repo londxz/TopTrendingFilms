@@ -21,4 +21,14 @@ class MainViewView {
         return tbView
     }()
     
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemGray2
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        indicator.hidesWhenStopped = true
+        
+        return indicator
+    }()
+    
 }
