@@ -63,11 +63,11 @@ class APICaller {
                     completionHandler(.failure(.dataError))
                     return
                 }
-
                 
                 do {
                     let resultData = try JSONDecoder().decode(TrendingMoviesModel.self, from: data)
                     completionHandler(.success(resultData))
+                    
                 } catch {
                     completionHandler(.failure(.parsingError))
                 }

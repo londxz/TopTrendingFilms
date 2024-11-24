@@ -18,17 +18,17 @@ class MainViewController: UIViewController {
     // vars lets
     var tableView = UITableView()
     var indicator: UIActivityIndicatorView!
-    var cellDataSource: [Movie] = []
+    var cellDataSource: [MovieTableCellViewModel] = []
     
     override func viewDidLoad() {
     
         configView()
         bindViewModel()
+        viewModel.getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.getData()
     }
     private func setTableView() {
         tableView = build.tableView
@@ -79,6 +79,7 @@ class MainViewController: UIViewController {
                 return
             }
             self.cellDataSource = movies
+            print("Data source updated with \(movies.count) items.") 
             self.reloadTableView()
         }
     }
