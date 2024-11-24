@@ -26,7 +26,7 @@ class MainMovieCellView {
     lazy var nameLabel: UILabel = {
         var name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.font = .preferredFont(forTextStyle: .title2)
+        name.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
         name.text = "Name"
         
         return name
@@ -35,6 +35,7 @@ class MainMovieCellView {
     lazy var dateLabel: UILabel = {
         var date = UILabel()
         date.translatesAutoresizingMaskIntoConstraints = false
+        date.font = .monospacedSystemFont(ofSize: 15, weight: .light)
         date.text = "06/66/6666"
         
         return date
@@ -43,7 +44,7 @@ class MainMovieCellView {
     lazy var rateLabel: UILabel = {
         var rate = UILabel()
         rate.translatesAutoresizingMaskIntoConstraints = false
-        rate.font = .preferredFont(forTextStyle: .subheadline)
+        rate.font = .monospacedSystemFont(ofSize: 15, weight: .medium)
         rate.text = "10/10"
         
         return rate
