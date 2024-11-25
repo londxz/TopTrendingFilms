@@ -10,7 +10,7 @@ import UIKit
 class MainViewView {
     
     // make it singleton
-    static var shared = MainViewView()
+    static let shared = MainViewView()
     private init() {}
     
     lazy var tableView: UITableView = {

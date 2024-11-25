@@ -9,6 +9,7 @@ import Foundation
 
 
 class MovieTableCellViewModel {
+    
     var id: Int
     var title: String
     var date: String

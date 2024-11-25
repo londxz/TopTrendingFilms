@@ -27,6 +27,8 @@ class MainMovieCellView {
         var name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
         name.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        name.textAlignment = .left
+        name.numberOfLines = 0
         name.text = "Name"
         
         return name
