@@ -33,6 +33,7 @@ class DetailsMovieViewController: UIViewController {
         setMovieName()
         setMovieLabel()
         configView()
+        setupNavigationBar()
     }
     
     private func setMovieImage() {
@@ -81,6 +82,24 @@ class DetailsMovieViewController: UIViewController {
         movieImage.sd_setImage(with: viewModel.imageURL)
         movieName.text = viewModel.name
         movieDescription.text = viewModel.description
+    }
+    
+    func setupNavigationBar() {
+        //systemName: "chevron.left"
+        //resource: .leftArrowNav
+        //let buttonView = UIView()
+        let leftArrowImage = UIImage(systemName: "chevron.left")
+        let barButtonItem = UIBarButtonItem(
+            image: leftArrowImage,
+            style: .plain,
+            target: self,
+            action: #selector(backButtonClicked(_:)))
+        
+        barButtonItem.tintColor = .black
+        navigationItem.leftBarButtonItem = barButtonItem
+    }
+    @objc func backButtonClicked(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
 
 }
